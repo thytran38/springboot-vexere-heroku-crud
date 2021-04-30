@@ -79,6 +79,7 @@
 			<artifactId>holon-starter-jpa-hibernate</artifactId>
 			<version>5.5.0</version>
 		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
