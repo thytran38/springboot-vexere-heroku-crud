@@ -31,7 +31,7 @@ public class MealController {
     private FoodRepository foodRepository;
 
     @GetMapping("/meals")
-    public List<Meal> getAllBuses() {
+    public List<Meal> getAllMeals() {
         return foodRepository.findAll();
     }
 
@@ -39,7 +39,7 @@ public class MealController {
     public ResponseEntity<Meal> getMealByID(@PathVariable(value = "id") Long mealID)
             throws ResourceNotFoundException {
         Meal meal = foodRepository.findById(mealID)
-                .orElseThrow(() -> new ResourceNotFoundException("Bus not found for this id : " + mealID));
+                .orElseThrow(() -> new ResourceNotFoundException("Meal not found for this id : " + mealID));
         return ResponseEntity.ok().body(meal);
     }
 
@@ -58,8 +58,8 @@ public class MealController {
         return ResponseEntity.ok(updatedMeal);
     }
 
-    @DeleteMapping("/buses/{id}")
-    public Map<String, Boolean> deleteTrip(@PathVariable(value="id") Long mealID) throws ResourceNotFoundException
+    @DeleteMapping("/meals/{id}")
+    public Map<String, Boolean> deleteMeal(@PathVariable(value="id") Long mealID) throws ResourceNotFoundException
     {
         Meal meal = foodRepository.findById(mealID)
                 .orElseThrow(() -> new ResourceNotFoundException("Meal not found for this id : " + mealID));

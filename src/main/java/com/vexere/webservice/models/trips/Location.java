@@ -12,5 +12,29 @@ import javax.persistence.Table;
 public class Location {
     public int locaID;
     public String locaCode;
+    public String locaName;
 
+    public int getLocaID() {
+        return locaID;
+    }
+
+    public String getLocaName() {
+        return locaName;
+    }
+
+    public void setLocaName(String locaName) {
+        this.locaName = locaName;
+    }
+
+    public void setLocaID(int locaID) {
+        this.locaID = locaID;
+    }
+
+    public String getLocaCode() {
+        return locaCode;
+    }
+
+    public void setLocaCode(String locaCode) {
+        this.locaCode = locaCode;
+    }
 }

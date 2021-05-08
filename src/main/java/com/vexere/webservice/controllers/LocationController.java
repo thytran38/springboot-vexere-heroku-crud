@@ -32,44 +32,45 @@ public class LocationController {
     private LocationRepository locationRepository;
 
     @GetMapping("/locations")
-    public List<Location> getAllBuses() {
+    public List<Location> getAllLocations() {
         return locationRepository.findAll();
     }
 
     @GetMapping("/locations/{id}")
-    public ResponseEntity<Bus> getEmployeeById(@PathVariable(value = "id") Long busID)
+    public ResponseEntity<Location> getLocationByID(@PathVariable(value = "id") Long locationID)
             throws ResourceNotFoundException {
-        Bus bus = locationRepository.findById(busID)
-                .orElseThrow(() -> new ResourceNotFoundException("Bus not found for this id :: " + busID));
-        return ResponseEntity.ok().body(bus);
+        Location location = locationRepository.findById(locationID)
+                .orElseThrow(() -> new ResourceNotFoundException("Location not found for this id :: " + locationID));
+        return ResponseEntity.ok().body(location);
     }
 
-    @PostMapping("/buses")
-    public Bus createBus(@Valid @RequestBody Bus bus) {
-        return busRepository.save(bus);
+    @PostMapping("/location")
+    public Location createLocation(@Valid @RequestBody Location location) {
+        return locationRepository.save(location);
     }
 
-    @PutMapping("/buses/{id}")
-    public ResponseEntity<Bus> updateBus(@PathVariable(value = "id") Long busID,
-                                         @Valid @RequestBody Bus busDetails) throws ResourceNotFoundException {
-        Bus bus = busRepository.findById(busID)
-                .orElseThrow(() -> new ResourceNotFoundException("Trip not found for this id :: " + busID));
+    @PutMapping("/locations/{id}")
+    public ResponseEntity<Location> updateLocation(@PathVariable(value = "id") Long locationID,
+                                         @Valid @RequestBody Location locationDetails) throws ResourceNotFoundException {
+        Location location = locationRepository.findById(locationID)
+                .orElseThrow(() -> new ResourceNotFoundException("Trip not found for this id :: " + locationID));
 
-        bus.setBrand(busDetails.getBrand());
-        final Bus updatedBus = busRepository.save(bus);
-        return ResponseEntity.ok(updatedBus);
+        location.setLocaCode(location.getLocaCode());
+
+        final Location updatedLocation = locationRepository.save(location);
+        return ResponseEntity.ok(updatedLocation);
     }
 
 
-    @DeleteMapping("/buses/{id}")
-    public Map<String, Boolean> deleteTrip(@PathVariable(value="id") Long busID) throws ResourceNotFoundException
+    @DeleteMapping("/locations/{id}")
+    public Map<String, Boolean> deleteTrip(@PathVariable(value="id") Long locationID) throws ResourceNotFoundException
     {
-        Bus bus = busRepository.findById(busID)
-                .orElseThrow(() -> new ResourceNotFoundException("Bus not found for this id :: " + busID));
+        Location location = locationRepository.findById(locationID)
+                .orElseThrow(() -> new ResourceNotFoundException("Bus not found for this id :: " + locationID));
 
-        busRepository.delete(bus);
+        locationRepository.delete(location);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Bus deleted", Boolean.TRUE);
+        response.put("Location deleted", Boolean.TRUE);
         return response;
     }
 }

@@ -14,4 +14,27 @@ public class Seat {
     public int busId;
     public int tripId;
 
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public int getBusId() {
+        return busId;
+    }
+
+    public void setBusId(int busId) {
+        this.busId = busId;
+    }
+
+    public int getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
 }
