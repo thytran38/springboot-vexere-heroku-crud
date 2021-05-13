@@ -1,5 +1,6 @@
 package com.vexere.webservice.controllers;
 
+import java.lang.Iterable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,10 @@ public class TripController {
     public Trip createTrip(@Valid @RequestBody Trip trip) {
         return tripRepository.save(trip);
     }
+
+    @PostMapping("bulkcreate")
+
+    public Iterable<Trip> createSeveralTrips(@Valid @RequestBody Iterable<Trip> trips){return tripRepository.saveAll(trips);}
 
     @PutMapping("/trips/{id}")
     public ResponseEntity<Trip> updateTripArrivalTime(@PathVariable(value = "id") Long tripID,

@@ -37,7 +37,7 @@ public class BusController {
     }
 
     @GetMapping("/buses/{id}")
-    public ResponseEntity<Bus> getEmployeeById(@PathVariable(value = "id") Long busID)
+    public ResponseEntity<Bus> getBusByID(@PathVariable(value = "id") Long busID)
             throws ResourceNotFoundException {
         Bus bus = busRepository.findById(busID)
                 .orElseThrow(() -> new ResourceNotFoundException("Bus not found for this id :: " + busID));
@@ -62,7 +62,7 @@ public class BusController {
 
 
     @DeleteMapping("/buses/{id}")
-    public Map<String, Boolean> deleteTrip(@PathVariable(value="id") Long busID) throws ResourceNotFoundException
+    public Map<String, Boolean> deleteBus(@PathVariable(value="id") Long busID) throws ResourceNotFoundException
     {
         Bus bus = busRepository.findById(busID)
                 .orElseThrow(() -> new ResourceNotFoundException("Bus not found for this id :: " + busID));
